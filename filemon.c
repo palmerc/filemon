@@ -228,6 +228,15 @@ interesting_process (int pid, char *Filters[], int NumFilters)
 	if (pid == getpid()) return 0; 
 	// Otherwise, if no user defined filters, get all
 	if (!NumFilters) return 1; 
+
+	while (NumFilters > 0)
+	{
+           int filter_pid = atoi(Filters[NumFilters-1]);
+           //fprintf(stderr,"Checking %d vs %d\n", pid, filter_pid);
+	   if (pid == filter_pid) return 1;
+	   NumFilters--;
+	}
+
 	return 0;
 }
 	
@@ -243,7 +252,7 @@ interesting_file (char *FileName, char *Filters[], int NumFilters)
 	
 	while (NumFilters > 0)
 	{
-// fprintf(stderr,"Checking %s vs %s\n", FileName, Filters[NumFilters-1]);
+           //fprintf(stderr,"Checking %s vs %s\n", FileName, Filters[NumFilters-1]);
 	   if (strstr(FileName, Filters[NumFilters-1])) return 1;
 	   NumFilters--;
 
@@ -294,7 +303,10 @@ main (int argc, char **argv)
 				   argv[arg]); 
 			   exit(2);
 			}
-			numProcFilters++;
+
+			char *procFilter = argv[arg+1];
+			fprintf(stderr,"Adding Proc filter: %s\n", procFilter);
+			procFilters[numProcFilters++] = strdup(procFilter);
 
 			arg++; continue;
 		}
