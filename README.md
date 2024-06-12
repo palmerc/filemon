@@ -2,7 +2,7 @@
 
 The original can be found at [http://newosxbook.com/ios](http://newosxbook.com/ios/ios.html)
 
-The key difference between this and what you find on his website is that this compiles. In addition, I've added a CMake file, but more importantly a toolchain file that will allow you to compile this for macOS and iOS.
+The key difference between this and what you find on his website is that this compiles with the help of the missing dependencies. In addition, I've added a CMake file, but more importantly a toolchain file that will allow you to compile this for macOS and iOS.
 
 ### Compilation with CMake
 
@@ -27,3 +27,4 @@ The key difference between this and what you find on his website is that this co
 	-l|--link:                auto-create a hard link to file (prevents deletion by program :-)
 	-c|--color (or set JCOLOR=1 first)
 	This is J's filemon, compiled on Oct 10 2022
+
